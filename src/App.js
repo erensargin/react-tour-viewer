@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useEffect } from 'react';
+import { Route,Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import FloorList from './pages/FloorList';
+import HotspotList from './pages/HotspotList';
+import { TourProvider } from './TourContext';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<TourProvider>
+<Routes>
+  <Route exact path="/" element={<Home/>} />
+  <Route exact path="/:tourId" element={<FloorList />} />
+  <Route exact path="/:tourId/:floorId" element={<HotspotList />} />
+  {/* <Route exact path="/:tourId/:floorId/:hotspotId" element={PhotoList} />
+  <Route exact path="/:tourId/:floorId/:hotspotId/:photoId" element={PhotoViewer} /> */}
+
+</Routes>
+</TourProvider>
+</>
   );
 }
 
